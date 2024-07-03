@@ -39,7 +39,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -94,6 +96,7 @@
               "zone.js",
               "zone.js/testing"
             ],
+            
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -105,10 +108,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "proxyConfig": "src/proxy.conf.json"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3e313903-4262-4e0b-93cd-aad28f9140ec"
   }
 }
