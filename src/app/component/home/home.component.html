@@ -1,0 +1,148 @@
+<style>
+    .intro-section{
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+
+    .search-box{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-bottom: 20px;
+    }
+    .product-category{
+        width: 200px;
+    }
+    .search-input{
+        width: 300px;
+        background-color: rgb(19, 23, 42);
+        margin-right: 10px;
+        border-color: rgba(255, 255, 255, 0.5);
+        color:  white;
+        
+    }
+    .form-control{
+     background-color: transparent;
+     color: white;   
+    }
+    .form-control::placeholder{
+        color: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+    }
+    .form-control::-ms-input-placeholder{
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .form-control:-ms-input-placeholder{
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .product-items{
+        background-color: rgb(19, 23, 42);
+        border: 1px solid rgb(35,39,61);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .product-image{
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+
+    }
+    .product-name{
+        color: white;
+    }
+    .product-description{
+        color: rgb(173, 178, 203);    ;
+    }
+    .product-price{
+        color: white;
+    }
+    .product-warranty{
+        color: rgb(195, 124, 192);
+    }
+    .product-rating{
+        color: rgba(118, 178, 215, 0.995);
+    }
+    .product-actions{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .space{
+        margin: 0 5px;
+    }
+</style>
+<app-header></app-header>
+<div class="container">
+    <div class="intro-section">
+        <h1>Home Page</h1>
+    </div>
+    <div class="search-box">
+        <input type="text" class="form-control search-input"
+        placeholder="Tìm sản phẩm" [(ngModel)]="keyword">
+        <select class="form-control product-category" [(ngModel)]="selectedCategory">
+            <option value="0">Tất cả</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <button class="btn btn-primary ml-2" (click)="searchProducts()">Tìm kiếm</button>
+    </div>
+    <!-- <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="product-items">
+                <img src="https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="product-image">
+                <h3 class="product-name">Product 1</h3>
+                <p class="product-description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </p>
+                    <p class="product-warranty">Bảo hành: 12 tháng</p>
+                    <p class="product-price">Giá: <del>1000$</del> 860$</p>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary">Add Cart</button>
+                        <span class="space"></span>
+                        <button class="btn btn-success">Buy Now</button>
+                    </div>
+
+            </div>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let product of products">
+            <div class="product-items" (click)="OnProductClick(product.id)">
+                <img [src]="product.url" alt="Product Image" class="product-image">
+                <h3 class="product-name">{{product.name}}</h3>
+                <p class="product-description">{{product.description}}</p>
+                <p class="product-price">Giá: ${{product.price}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="currentPage>1">
+                    <a href="#" class="page-link" (click)="onPageChange(1)">First</a>
+                </li>
+                <li class="pageitem" *ngIf="currentPage > 1">
+                    <a href="#" class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+                </li>
+                <ng-container *ngFor="let page of visiblePages">
+                    <li class="page-item" [ngClass]="{'active':page === currentPage}">
+                        <a href="#" class="page-link" (click)="onPageChange(page)">{{page}}  </a>
+                    </li>
+                </ng-container>
+                <li class="page-item" *ngIf="currentPage < totalPages">
+                    <a href="#" class="page-link" (click)="onPageChange(currentPage+1)">Next</a>
+                </li>
+                <li class="page-item" *ngIf="currentPage < totalPages">
+                    <a href="#" class="page-link" (click)="onPageChange(totalPages)">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<app-footer></app-footer>
