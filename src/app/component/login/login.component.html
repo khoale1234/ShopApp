@@ -8,8 +8,8 @@
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" id="phone"
-                            [(ngModel)]="phone"
-                            (input)="onPhoneChange()"
+                            [(ngModel)]="phoneNumber"
+                            (input)="onPhoneNumberChange()"
                             name="phone"
                             (focus)="LoginForm.form.markAsTouched()">
                         <div class="divider-nospace"></div>

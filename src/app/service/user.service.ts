@@ -4,8 +4,10 @@ import { register } from 'module';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dto';
-import { env } from '../app/envs/env';
-import { UserResponse } from '../app/response/user/user.response';
+import { env } from '../../envs/env';
+import { UserResponse } from '../response/user/user.response';
+import { UpdateUserDTO } from '../dtos/user/update.user.dto';
+import { ApiResponse } from '../response/api.response';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +37,16 @@ export class UserService {
       Authorization:'Bearer '+token
     })
   }
+  updateUserDetail(token: string, updateUserDTO: UpdateUserDTO): Observable<ApiResponse>  {
+    debugger
+    let userResponse = this.getUserResponseFromLocalStorage();        
+    return this.http.put<ApiResponse>(`${this.apiUserDetails}/${userResponse?.id}`,updateUserDTO,{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      })
+    })
+  }
   saveUserResponseToLocalStorage(userResponse?: UserResponse){
     try{
       debugger
@@ -42,7 +54,7 @@ export class UserService {
         return;
       }
       const userResponseJSON=JSON.stringify(userResponse);
-      localStorage.setItem('user',userResponseJSON);
+      localStorage?.setItem('user',userResponseJSON);
       console.log('User response saved to local storage');
     }
     catch(error){
@@ -51,9 +63,9 @@ export class UserService {
   }
   getUserResponseFromLocalStorage(){
     try{
-      const userResponseJSON=localStorage.getItem('user');
+      const userResponseJSON=localStorage?.getItem('user');
       if(userResponseJSON==null||userResponseJSON==undefined){
-        return;
+        return null;
       }
       const userResponse= JSON.parse(userResponseJSON!);
       console.log('User response retrieved from local storage.');
@@ -61,6 +73,16 @@ export class UserService {
     }
     catch(error){
       console.log('Error retrieving user response from local storage',error);
+    }
+  }
+  removeUserFromLocalStorage():void {
+    try {
+      // Remove the user data from local storage using the key
+      localStorage.removeItem('user');
+      console.log('User data removed from local storage.');
+    } catch (error) {
+      console.error('Error removing user data from local storage:', error);
+      // Handle the error as needed
     }
   }
   } 

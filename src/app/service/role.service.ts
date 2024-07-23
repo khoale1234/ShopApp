@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { env } from "../app/envs/env";
+import { env } from "../../envs/env";
 @Injectable({
     providedIn:'root',
 })

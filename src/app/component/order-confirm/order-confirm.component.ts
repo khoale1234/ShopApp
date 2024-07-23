@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
-import { CartService } from '../../../service/cart.service';
-import { ProductService } from '../../../service/product.service';
-import { env } from '../../envs/env';
+import { CartService } from '../../service/cart.service';
+import { ProductService } from '../../service/product.service';
+import { env } from '../../../envs/env';
 
 @Component({
   selector: 'app-order-confirm',

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { LoginComponent } from './app/component/login/login.component';
-import { HomeComponent } from './app/component/home/home.component';
 import { FooterComponent } from './app/component/footer/footer.component';
 import { HeaderComponent } from './app/component/header/header.component';
 import { OrderConfirmComponent } from './app/component/order-confirm/order-confirm.component';
@@ -14,27 +13,34 @@ import { TokenInterceptor } from './app/interceptor/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { OrderDetailComponent } from './app/component/order-detail/order-detail.component';
 import { AppComponent } from './app/app/app.component';
+import { HomeComponent } from './app/component/home/home.component';
+import { OrderComponent } from './app/component/order/order.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './app/component/user-profile/user-profile.component';
+import { AdminComponent } from './app/admin/admin.component';
+
 @NgModule({
   declarations: [
-    LoginComponent,
     HomeComponent,
+    LoginComponent,
     FooterComponent,
     HeaderComponent,
     OrderConfirmComponent,
     RegisterComponent,
     ProductDetailsComponent,      
-    OrderDetailComponent, AppComponent    
+    OrderDetailComponent, AppComponent, OrderComponent, UserProfileComponent, AdminComponent    
   ],
   imports: [
+    
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    
+    NgbModule,
     
   ],
   providers: [
-    provideClientHydration(), provideHttpClient(withInterceptorsFromDi()),
+    provideClientHydration(), provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

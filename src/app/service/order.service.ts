@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { env } from "../app/envs/env";
+import { env } from "../../envs/env";
 import { Observable } from "rxjs";
 import { OrderDTO } from "../dtos/order/order.dto";
 

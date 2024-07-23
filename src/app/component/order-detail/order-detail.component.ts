@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderResponse } from '../../response/order/order.response';
-import { OrderService } from '../../../service/order.service';
+import { OrderService } from '../../service/order.service';
 import { OrderDetail } from '../../models/order.detail';
-import { env } from '../../envs/env';
-
+import { env } from '../../../envs/env';
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
